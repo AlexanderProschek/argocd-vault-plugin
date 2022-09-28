@@ -1,5 +1,5 @@
 ### HashiCorp Vault
-We support AppRole and Github Auth Method for getting secrets from Vault.
+We support AppRole, Token, Github, Kubernetes and Userpass Auth Method for getting secrets from Vault.
 
 We currently support retrieving secrets from KV-V1 and KV-V2 backends.
 
@@ -93,7 +93,7 @@ In order to use Kubernetes Authentication a couple of things are required.
     ```
     This role authorizes the "vault-auth" service account in the default namespace and it gives it the default policy.
 
-    You can find the full documentation on configuring Kubernetes Authentication [Here](vaultproject.io/docs/auth/kubernetes#configuration).
+    You can find the full documentation on configuring Kubernetes Authentication [here](https://www.vaultproject.io/docs/auth/kubernetes#configuration).
 
 
 Once Argo CD and Kubernetes are configured, you can then set the required environment variables for the plugin:
@@ -104,6 +104,16 @@ AVP_AUTH_TYPE: k8s
 AVP_K8S_MOUNT_PATH: Mount Path of your kubernetes Auth (optional)
 AVP_K8S_ROLE: Your Kuberetes Auth Role
 AVP_K8S_TOKEN_PATH: Path to JWT (optional)
+```
+
+##### Userpass Authentication
+For Userpass Authentication, these are the required parameters:
+```
+VAULT_ADDR: Your HashiCorp Vault Address
+AVP_TYPE: vault
+AVP_AUTH_TYPE: userpass
+AVP_USERNAME: Your Username
+AVP_PASSWORD: Your Password
 ```
 
 ##### Examples
